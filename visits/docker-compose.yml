@@ -1,0 +1,17 @@
+# specifies version of docker compose
+version: '2'
+
+# command to tell docker compose what we want it to do. Service is esentially saying  kinda a type of container.
+services:
+  redis-server:
+    image: 'redis'
+  node-app:
+    restart: always
+    # look in the currrent directory for a docker file and use that to build this image.
+    build: .
+    # specify all the different ports that you want to have opened up on this container.
+    ports:
+      # - in yml is how we specify an array, so we technically can can map many different ports inside of a single docker compse file, for a single service
+      # in this case we just one to map one set of ports. "port in local machine":"port inside the container"
+      - "4001:8081"
+# By defining these two services, docker ocmpose will create both these containers on the same network and they will have access to communicate to each other in any way that they please
