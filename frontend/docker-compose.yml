@@ -15,3 +15,12 @@ services:
             - /app/node_modules
             # reference working directory of local machine : container working directory. (this way when you make changes in local, they will appear in your build, even though we copied all files/fo;ders in the COPY . . step in the Dockerfile.dev)
             - .:/app
+    test:
+        stdin_open: true
+        build: 
+            context: .
+            dockerfile: Dockerfile.dev
+        volumes:
+            - /app/node_modules
+            - .:/app
+        command: ["npm", "run", "test"]
