@@ -36,4 +36,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
         - Run with `docker-compose up --build`
 
 ### Building React App in Production
-- In development environment we have a dev server that sends the http request the `index.html` and `main.js` files to the browser. In production, this dev server does not exist.
+- In development environment we have a dev server that sends the http request the `index.html` and `main.js` files to the browser. In production, this dev server does not exist because it is not appropriate to be running in production environment (has a lot of proccessing power dedicated to processing constantly changing `index.html` and `main.js` files, which we will not need in production since we aren't making changes).
+- We will use server nginx, takes incoming traffic and routing to it with some static files. 
+- Create a seperate Dockerfile that will create a production version of our web container with a nginx server.
+    - docker hub has a nginx image, we will be doing a multi step build process for our production container.
