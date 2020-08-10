@@ -8,7 +8,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 
 ### Docker Volumes
-- Setting up Docker volumes to allow the docker container to reference files in my local machine, (and update changes immediately when made on my local machine). First build the image `docker build -f Dockerfile.dev` then run command `docker run -it -p 3000:3000 -v /app/node_modules -v ${pwd}:/app CONTAINER_ID`
+- Setting up Docker volumes to allow the docker container to reference files in my local machine, (and update changes immediately when made on my local machine). First build the image `docker build -f Dockerfile.dev .` then run command `docker run -it -p 3000:3000 -v /app/node_modules -v ${pwd}:/app CONTAINER_ID`
     - `-v /app/node_modules` putting a bookmark on the node_modules folder (placeholder for a folder that is inside the container)
     - `-v ${pwd}:/app`
         - `-v` used to set up a volume
