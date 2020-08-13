@@ -22,11 +22,18 @@ const pgClient = new Pool({
     port: keys.pgPort
 })
 
-pgClient.on('error', () => console.log('Lost PG connection'))
+// pgClient.on('error', () => console.log('Lost PG connection'))
 
-// we have to initially create at least one time a table that will  store all the values
-pgClient.query('CREATE TABLE IF NOT EXISTS values (number INT)')
-    .catch (err => console.log(err))
+// // we have to initially create at least one time a table that will  store all the values
+// pgClient.query('CREATE TABLE IF NOT EXISTS values (number INT)')
+//     .catch (err => console.log(err))
+
+// Update to Ensure that we delay the table query until after a connection is made.
+pgClient.on('connect', () => {
+    pgClient
+        .query('CREATE TABLE IF NOT EXISTS values (number INT)')
+        .catch((err) => console.log(err));
+});
 
 
 //  REDIS CLIENT SETUP

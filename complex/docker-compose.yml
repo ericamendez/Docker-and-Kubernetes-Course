@@ -1,0 +1,44 @@
+version: '2'
+services:
+    postgres:
+        image: 'postgres:latest'
+        environment:
+            - POSTGRES_PASSWORD=postgres_password
+    redis:
+        image: 'redis:latest'
+    server:
+        build:
+            # Just the name of the dockerfile
+            dockerfile: Dockerfile.dev
+            # To specify that we want you to use the Dockerfile.dev in the server folder we specify that in context
+            context: ./server
+        volumes:
+            # Inside the container, dont try to override this folder
+            - /app/node_modules
+            # look at server directory and copy everything inside there into the app folder of the container
+            # This is saying that everything in our /app dir in container will get redirected to our ./server in local
+            - ./server:/app
+        # this will let the server know env variables it will need to sucessfully connect to redis and postgres
+        # find environemnt values in docs
+        environment: 
+            - REDIS_HOST=redis
+            - REDIS_PORT=6379
+            - PGUSER=postgres
+            - PGHOST=postgres
+            - PGDATABASE=postgres
+            - PGPASSWORD=postgres_password
+            - PGPORT=5432
+    client:
+        build:
+            dockerfile: Dockerfile.dev
+            context: ./client
+        volumes:
+            - /app/node_modules
+            - ./client:/app
+    worker:
+        build:
+            dockerfile: Dockerfile.dev
+            context: ./worker
+        volumes:
+            - /app/node_modules
+            - ./worker:/app
