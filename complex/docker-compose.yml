@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 services:
     postgres:
         image: 'postgres:latest'
@@ -6,7 +6,21 @@ services:
             - POSTGRES_PASSWORD=postgres_password
     redis:
         image: 'redis:latest'
-    server:
+    nginx:
+        # we always want nginx running
+        restart: always
+        depends_on:
+            - api
+            - client
+        build:
+            dockerfile: Dockerfile.dev
+            context: ./nginx
+        # localhost:3050
+        ports:
+            - '3050:80'
+    api:
+        depends_on:
+            - postgres
         build:
             # Just the name of the dockerfile
             dockerfile: Dockerfile.dev
@@ -29,6 +43,8 @@ services:
             - PGPASSWORD=postgres_password
             - PGPORT=5432
     client:
+        # this resolves recent bug that causes the React app to exit when starting Docker Compose in latest react version.
+        stdin_open: true
         build:
             dockerfile: Dockerfile.dev
             context: ./client
@@ -36,6 +52,9 @@ services:
             - /app/node_modules
             - ./client:/app
     worker:
+        environment:
+            - REDIS_HOST=redis
+            - REDIS_PORT=6379
         build:
             dockerfile: Dockerfile.dev
             context: ./worker
