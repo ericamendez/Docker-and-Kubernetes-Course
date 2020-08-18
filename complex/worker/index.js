@@ -17,7 +17,7 @@ function fib(index){
 }
 
 // watch redis for whenever ther is a new value
-sub.on('message', (channel,message) => {
+sub.on('message', (channel, message) => {
     redisClient.hset('values', message, fib(parseInt(message)));
 })
 
