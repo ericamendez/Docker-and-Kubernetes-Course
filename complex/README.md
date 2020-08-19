@@ -1,8 +1,7 @@
 ## A web application that connects React clientside with a Node.js/Express backend that will take user input store the input into Postgres. It will also cache the input and calculate an output that will be stored in Redis.
+The purpose of this app is to learn how to build and "Dockerize" a multi-container application.
 
-### The purpose of this app is to learn how to build and "Dockerize" a multi-container application.
-
-We will connect multiple containers:
+#### We will connect multiple containers:
 - Client (React)
 - Api/Server (Express)
 - Postgres (Database)
@@ -10,7 +9,7 @@ We will connect multiple containers:
 - Worker (Express, where calculation will be done and added cached)
 - Nginx (Routing server)
 
-We will route incoming request with Nginx server. 
+#### We will route incoming request with Nginx server. 
 - When request includes `/api` this is going to get routed to the Express Server (ex. `/api/values/all`)
 - `/` will get routed to the React server (ex. `/index.html` or `/main.js`).
 - Why not use port (react port 4000, express port 3000)? We don't want to juggle these different ports in a production environment. Also the port can easily change so it is safer to veriy the token at the beginning of the route path `/api` than at the end such as `/api/values/all:3000` and let Nginx route for us.
