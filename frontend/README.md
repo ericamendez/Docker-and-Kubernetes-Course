@@ -51,6 +51,13 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
         - Benefit is that EB automatically scales everything up for us.
     - Configure `.travis.yml` to add deploy instructions (notes in files).
 
+### Flow for deplying this single container set up
+- Push code to github
+- Travis automatically pulls repo
+- Travis builds image and tests code
+- Travis pushes code to AWS EB
+- EB builds image and deploys it
+
 
 REMINDER TO DELETE RESOURCES CREATED IN EBS OR YOU WILL BE CHARGED AWS BILL
 1. Go to the Elastic Beanstalk dashboard.
