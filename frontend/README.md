@@ -60,7 +60,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 
 
-REMINDER TO DELETE RESOURCES CREATED IN EBS OR YOU WILL BE CHARGED AWS BILL
+#### REMINDER TO DELETE RESOURCES CREATED IN EBS OR YOU WILL BE CHARGED AWS BILL
 1. Go to the Elastic Beanstalk dashboard.
 
 2. In the left sidebar click "Applications"
