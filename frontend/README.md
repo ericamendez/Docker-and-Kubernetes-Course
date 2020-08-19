@@ -52,11 +52,12 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
     - Configure `.travis.yml` to add deploy instructions (notes in files).
 
 ### Flow for deplying this single container set up
-- Push code to github
-- Travis automatically pulls repo
-- Travis builds image and tests code
-- Travis pushes code to AWS EB
-- EB builds image and deploys it
+1. Push code to github
+2. Travis automatically pulls repo
+3. Travis builds image and tests code
+4. Travis pushes code to AWS EB
+5. EB builds image and deploys it
+
 
 
 REMINDER TO DELETE RESOURCES CREATED IN EBS OR YOU WILL BE CHARGED AWS BILL
