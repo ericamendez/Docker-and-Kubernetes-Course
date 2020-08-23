@@ -1,0 +1,12 @@
+sudo: required
+language: generic
+
+services:
+    - docker
+
+# build test version of clent container to run test
+before_install:
+
+script:
+    - docker run -e CI=true ericamendez/react-test npm test
+    # - docker run ericamendez/react-test npm tst -- --coverage
