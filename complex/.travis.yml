@@ -17,3 +17,10 @@ after_success:
     - docker build -t ericamendez/multi-nginx ./nginx
     - docker build -t ericamendez/multi-server ./server
     - docker build -t ericamendez/multi-worker ./worker
+    # take those images and push them to Docker Hub
+    # first log into Docker CLI
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+    - docker push ericamendez/multi-client
+    - docker push ericamendez/multi-nginx
+    - docker push ericamendez/multi-server
+    - docker push ericamendez/multi-worker
