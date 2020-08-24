@@ -4,9 +4,16 @@ language: generic
 services:
     - docker
 
-# build test version of clent container to run test
+# build test version of client container to run test inside of it
 before_install:
+    - docker build -t ericamendez/react-test -f ./client/Dockerfile.dev ./client
 
 script:
     - docker run -e CI=true ericamendez/react-test npm test
-    # - docker run ericamendez/react-test npm tst -- --coverage
+    # old and will throw errors - docker run ericamendez/react-test npm test -- --coverage
+
+after_success:
+    - docker build -t ericamendez/multi-client ./client
+    - docker build -t ericamendez/multi-nginx ./nginx
+    - docker build -t ericamendez/multi-server ./server
+    - docker build -t ericamendez/multi-worker ./worker
