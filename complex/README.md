@@ -23,4 +23,6 @@ The purpose of this app is to learn how to build and "Dockerize" a multi-contain
 4. Travis builds prod images
 5. Travis pushes built prod images to Docker Hub
 6. Travis pushes project to AWS EB
-7. EB pulls images from Docker Hub and deploys
+7. EB pulls images from Docker Hub and deploys 
+    - configured in `Dockerrun.aws.json` file which tells EB where to pull images from, what resources to allocate for each one, how to set up some port mappings, & associating info.
+
