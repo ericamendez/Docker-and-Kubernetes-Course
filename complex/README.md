@@ -28,3 +28,22 @@ The purpose of this app is to learn how to build and "Dockerize" a multi-contain
     - EB has Amazon Elastic Container Service (ECS) that will run containers. In EB services are dfined as 'Container Definitions', in ECS they are 'task definitions'.
     - At least one of the container definitions need to be marked as essential
 
+
+### Redis is hosted on AWS Elastic Cache
+- Automatically creates and maintains Redis instances for you
+- super easy to scale
+- built in logging + maintenance
+- Better security than what we can do
+- Easier to migrate off of EB with
+
+### Postgres hosted by AWS RElational Database Service
+- Automatically creates and maintains Postgres instances for you
+- super easy to scale
+- built in logging + maintenance
+- Better security than what we can do
+- Automated backups and rollbacks
+- Easier to migrate off of EB with
+
+### To connect all our different services in our AWS VPC we need to create a Security Group (Firewall Rules)
+- allow any incoming traffic on port 80 from any IP
+- Allow traffic on Port 3010 from IP 172.0.40.2
